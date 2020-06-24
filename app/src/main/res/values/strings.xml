@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AutoLease</string>
+    <string name="add_item">Add New Car</string>
+    <string name="sort_item">Sort by</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
