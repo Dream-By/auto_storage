@@ -30,11 +30,11 @@ class EditorActivity : AppCompatActivity() {
                 Toast.makeText(this,"Enter fields",Toast.LENGTH_LONG).show()
                 editCarBrand.requestFocus()
             } else {
-                val autos = Autos()
+                val autos = Autos(carid = -1,carbrand = "",carmodel = "",caryear = "",carprice = "")
                 autos.carbrand = editCarBrand.text.toString()
                 autos.carmodel =editCarModel.text.toString()
                 autos.caryear = editYear.text.toString()
-                autos.carprice = editPrice.text.toString().toInt()
+                autos.carprice = editPrice.text.toString()
                 MainActivity.dbHelper.addAuto(this,autos)
                 clearEdits()
                 editCarBrand.requestFocus()
