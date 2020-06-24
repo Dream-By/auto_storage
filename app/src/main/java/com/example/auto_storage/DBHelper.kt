@@ -27,12 +27,12 @@ class DBHelper(context: Context,name:String?,factory:SQLiteDatabase.CursorFactor
 
     override fun onCreate(db: SQLiteDatabase?) {
 
-        val AUTO_TABLE_NAME = ("CREATE TABLE  $TABLE_NAME  (" +
+        val AUTO_TABLE_NAME = "CREATE TABLE  $TABLE_NAME  (" +
                 "$COLUMN_ID  INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "$COLUMN_Brand  TEXT," +
                 "$COLUMN_Model TEXT," +
                 "$COLUMN_Year TEXT," +
-                "$COLUMN_Price INT DEFAULT 0")
+                "$COLUMN_Price INTEGER);"
         try {
             if (db != null) {
                 db.execSQL(AUTO_TABLE_NAME)
@@ -61,12 +61,12 @@ class DBHelper(context: Context,name:String?,factory:SQLiteDatabase.CursorFactor
         if (cursor.count == 0)
             Toast.makeText(mAtx, "No Records Found", Toast.LENGTH_LONG).show() else {
             while (cursor.moveToNext()) {
-                val autos = Autos(carid = -1,carbrand = "",carmodel = "",caryear = "",carprice = "")
+                val autos = Autos()
                 autos.carid = cursor.getInt(cursor.getColumnIndex(COLUMN_ID))
                 autos.carbrand = cursor.getString(cursor.getColumnIndex(COLUMN_Brand))
                 autos.carmodel = cursor.getString(cursor.getColumnIndex(COLUMN_Model))
                 autos.caryear = cursor.getString(cursor.getColumnIndex(COLUMN_Year))
-                autos.carprice = cursor.getInt(cursor.getColumnIndex(COLUMN_Price)).toString()
+                autos.carprice = cursor.getInt(cursor.getColumnIndex(COLUMN_Price))
                 autosList.add(autos)
 
             }
@@ -78,12 +78,12 @@ class DBHelper(context: Context,name:String?,factory:SQLiteDatabase.CursorFactor
     }
 
     fun addAuto (mAtx: Context,autos:Autos){
-        val values = ContentValues().also {
-            it.put(COLUMN_Brand,autos.carbrand)
-            it.put(COLUMN_Model,autos.carmodel)
-            it.put(COLUMN_Year,autos.caryear)
-            it.put(COLUMN_Price,autos.carprice)
-        }
+        val values = ContentValues()
+            values.put(COLUMN_Brand,autos.carbrand)
+            values.put(COLUMN_Model,autos.carmodel)
+            values.put(COLUMN_Year,autos.caryear)
+            values.put(COLUMN_Price,autos.carprice)
+
         val db = this.writableDatabase
         System.out.println("autosList" + values)
 
