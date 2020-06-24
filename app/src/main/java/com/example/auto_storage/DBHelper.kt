@@ -85,8 +85,6 @@ class DBHelper(context: Context,name:String?,factory:SQLiteDatabase.CursorFactor
             values.put(COLUMN_Price,autos.carprice)
 
         val db = this.writableDatabase
-        System.out.println("autosList" + values)
-
         try {
             db.insert(TABLE_NAME,null,values)
             //db.execSQL("INSERT INTO $TABLE_NAME ($COLUMN_Brand, $COLUMN_Model, $COLUMN_Year, $COLUMN_Price) VALUES ('${autos.carbrand}', '${autos.carmodel}', '${autos.caryear}', ${autos.carprice});")

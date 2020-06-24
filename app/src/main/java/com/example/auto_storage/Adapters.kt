@@ -14,12 +14,12 @@ class AutoAdapter(mAtx:Context, val auto:ArrayList<Autos>) : RecyclerView.Adapte
 
     class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
 
-        val textCarBrand = itemView.textCarBrand
-        val textCarModel = itemView.textCarModel
-        val textYear = itemView.textYear
-        val textPrice = itemView.textPrice
-        val btnUpdate = itemView.btnUpdate
-        val btnDelete = itemView.btnDelete
+        val textCarBrand = itemView.textView1
+        val textCarModel = itemView.textView2
+        val textYear = itemView.textView3
+        val textPrice = itemView.textView4
+        //val btnUpdate = itemView.btnUpdate
+        //val btnDelete = itemView.btnDelete
 
     }
 
@@ -39,6 +39,7 @@ class AutoAdapter(mAtx:Context, val auto:ArrayList<Autos>) : RecyclerView.Adapte
     override fun onBindViewHolder(holder: AutoAdapter.ViewHolder, position: Int) {
 
         val autos : Autos = auto[position]
+
         holder.textCarBrand.text = autos.carbrand
         holder.textCarModel.text = autos.carmodel
         holder.textYear.text = autos.caryear

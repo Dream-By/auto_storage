@@ -15,11 +15,6 @@ class EditorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editor)
 
-        editCarBrand.setText("")
-        editCarModel.setText("")
-        editYear.setText("")
-        editPrice.setText("")
-
         val buttonAdd: Button = findViewById(R.id.buttonAdd)
         val buttonCancel:Button = findViewById(R.id.buttonCancel)
 
