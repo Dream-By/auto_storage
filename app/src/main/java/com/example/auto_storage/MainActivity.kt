@@ -5,14 +5,28 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.auto_storage.DBHelper
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
+private interface ASort {
+    fun sort(allautolist: ArrayList<Autos>)
+}
+
+private enum class AutosSort : ASort {
+    carbrand {
+        override fun sort(allautolist: ArrayList<Autos>) = allautolist.sortBy { it.carbrand }
+    },
+    caryear {
+        override fun sort(allautolist: ArrayList<Autos>) = allautolist.sortBy { it.caryear }
+    },
+    carprice {
+        override fun sort(allautolist: ArrayList<Autos>) = allautolist.sortBy { it.carprice }
+    }
+}
+private var sortField = AutosSort.carbrand
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,11 +36,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun viewAutos(){
         var allautolist: ArrayList<Autos> = dbHelper.getAllAutos(this)
+        sortField.sort(allautolist)
         var adapter = AutoAdapter(this,allautolist)
         val rv:RecyclerView = findViewById(R.id.rv)
         rv.layoutManager = LinearLayoutManager(this,LinearLayout.VERTICAL,false) as RecyclerView.LayoutManager
         rv.adapter = adapter
-
 
     }
 
@@ -49,19 +63,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, EditorActivity::class.java)
             startActivity(intent)
         })
-
-        //val fabsort = findViewById<FloatingActionButton>(R.id.floatingActionButton2)
-        //fabsort.setOnClickListener(View.OnClickListener {
-
-          //  val fragment = Fragment1()
-           // val manager = supportFragmentManager
-           // val transaction = manager.beginTransaction()
-            //transaction.replace(R.id.fragmentContainer,fragment)
-            //transaction.addToBackStack(null)
-            //transaction.commit()
-
-        //})
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -73,15 +74,18 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_carbrand -> {
-
+                sortField = AutosSort.carbrand
+                viewAutos()
                 return true
             }
             R.id.action_year -> {
-
+                sortField = AutosSort.caryear
+                viewAutos()
                 return true
             }
             R.id.action_price -> {
-
+                sortField = AutosSort.carprice
+                viewAutos()
                 return true
             }
         }

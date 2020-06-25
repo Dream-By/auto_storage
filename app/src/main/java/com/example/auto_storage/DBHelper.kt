@@ -70,7 +70,7 @@ class DBHelper(context: Context,name:String?,factory:SQLiteDatabase.CursorFactor
                 autosList.add(autos)
 
             }
-            Toast.makeText(mAtx, "${cursor.count.toString()} Records Found", Toast.LENGTH_SHORT).show()
+            Toast.makeText(mAtx, "${cursor.count.toString()} Found, ${autosList.size.toString()} read", Toast.LENGTH_SHORT).show()
         }
         cursor.close()
         db.close()
