@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ListPreference
+            android:key="pref_car"
+            android:defaultValue="1"
+            android:title="Sort By"
+            android:entries="@array/car_sort"
+            android:entryValues="@array/car_sort"
+            android:dialogTitle="Choose sort by..."/>
+
+</PreferenceScreen>

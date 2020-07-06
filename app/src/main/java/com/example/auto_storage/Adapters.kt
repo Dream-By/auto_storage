@@ -18,8 +18,7 @@ class AutoAdapter(mAtx:Context, val auto:ArrayList<Autos>) : RecyclerView.Adapte
         val textCarModel = itemView.textView2
         val textYear = itemView.textView3
         val textPrice = itemView.textView4
-        //val btnUpdate = itemView.btnUpdate
-        //val btnDelete = itemView.btnDelete
+
 
     }
 
